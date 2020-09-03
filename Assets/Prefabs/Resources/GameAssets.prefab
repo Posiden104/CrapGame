@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8255257305450807671
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5442624175065419338}
+  - component: {fileID: 3376269473236227111}
+  m_Layer: 0
+  m_Name: GameAssets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5442624175065419338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255257305450807671}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.3971499, y: -0.26376876, z: -30.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3376269473236227111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255257305450807671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c901905eef28de4794184b38d763829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HistoryNumber: {fileID: 6423076840154545636, guid: be06920432d8820438aa1a9ed81fd63a,
+    type: 3}
+  Toke: {fileID: 6874220995469671275, guid: 5e3e9b2ea9ecd5f42a08de017444c0a0, type: 3}
+  Dice: {fileID: 8699854619241038594, guid: c127b3c5ff27e4c4c9100e261931870d, type: 3}
+  ComeBox: {fileID: 4251890772363978532, guid: f652611f32eed9c4d8d9e58d9349a627, type: 3}
+  DontCome: {fileID: 4144850835779563549, guid: 6ebf6df3e3c76f641b386e49fcc992fe,
+    type: 3}
+  DontPass: {fileID: 5063279276854002207, guid: 49384d7d32ec97f428e6fddb023a4c26,
+    type: 3}
+  Field: {fileID: 7682880637657927006, guid: c87ff2d489db6254a883c3ce5724f50b, type: 3}
+  PassLine: {fileID: 3340639138731909635, guid: b3dcadf8395555a4699a9760d9feaa7c,
+    type: 3}
+  PlaceBox: {fileID: 7449982979546689629, guid: bbc2a2c6c564ebe4ab6ca6af3791bd7a,
+    type: 3}
+  HistoryLabel: {fileID: 569354826396384303, guid: 931b362c3da5b564dad94ad2c5447c42,
+    type: 3}
+  CrapsTable: {fileID: 4553774608075658016, guid: e99cfbd0f7932d1439e34b984e605b7e,
+    type: 3}
+  PointLabel: {fileID: 4728802011714203339, guid: 33a6b93f565c26b4ab7078e422dafaed,
+    type: 3}
+  ComeOutLabel: {fileID: 3157313995272788279, guid: c4f7c052f9785714c853992201a2de26,
+    type: 3}
+  BankrollLabel: {fileID: 35816480645689593, guid: a1a013ead84fc684eb5c918e6359312d,
+    type: 3}
+  BetWonLabel: {fileID: 4252891292616095272, guid: d28b390e5f62c0c48b784465b0e4a931,
+    type: 3}
+  BetLostLabel: {fileID: 1979741740199846528, guid: ea530e2ccdcde53448fe1d966e485042,
+    type: 3}

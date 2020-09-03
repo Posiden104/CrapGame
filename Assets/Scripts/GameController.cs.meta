@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f1f08ab039f59e546b780bfc8b61ea5e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - CrapsTablePrefab: {fileID: 4553774608075658016, guid: e99cfbd0f7932d1439e34b984e605b7e,
+      type: 3}
+  - DicePrefab: {fileID: 8699854619241038594, guid: c127b3c5ff27e4c4c9100e261931870d,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
