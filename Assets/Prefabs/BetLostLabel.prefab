@@ -187,7 +187,6 @@ GameObject:
   - component: {fileID: 4807072519236692344}
   - component: {fileID: 802710772579180066}
   - component: {fileID: 6544574192055902774}
-  - component: {fileID: 1169768837000793927}
   m_Layer: 0
   m_Name: BetLostLabel
   m_TagString: Untagged
@@ -352,16 +351,3 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!114 &1169768837000793927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1979741740199846528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 152b3574bf4e9b748be3c9fedbb7809e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingMoney: 10000

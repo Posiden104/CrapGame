@@ -30,12 +30,6 @@ public class Toke : MonoBehaviour
             sr = gameObject.AddComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetValue(int value)
     {
         if(sr == null)

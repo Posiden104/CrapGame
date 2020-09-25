@@ -187,7 +187,6 @@ GameObject:
   - component: {fileID: 4680722116179191671}
   - component: {fileID: 7720996111191230794}
   - component: {fileID: 6717645171684187454}
-  - component: {fileID: 8200029173876932604}
   m_Layer: 0
   m_Name: BetWonLabel
   m_TagString: Untagged
@@ -352,16 +351,3 @@ MonoBehaviour:
   m_maskType: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!114 &8200029173876932604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4252891292616095272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 152b3574bf4e9b748be3c9fedbb7809e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartingMoney: 10000

@@ -2,22 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceBox : MonoBehaviour
+public class PlaceBox : ClickableBet
 {
     public int Number;
-    Betable BetScript;
-    Clickable ClickScript;
-    List<SpriteRenderer> srList;
 
-    private void Awake()
+    private void Start()
     {
-        BetScript = GetComponent<Betable>();
-        ClickScript = GetComponent<Clickable>();
-        ClickScript.RegisterBetCallback(BetScript.PlaceBet);
-        ClickScript.RegisterRemoveBetCallback(BetScript.RemoveBet);
-        srList = new List<SpriteRenderer>();
-        BetScript.TokePlacement = transform.GetChild(0).gameObject;
-
         if (Number == 4 || Number == 10)
         {
             BetScript.PayoutPerUnit = 9;

@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     public CrapsTable CrapsTable_data;
     public bool RollOverride = false;
     public int OverrideRollTotal;
-    public int BetAmount;
+    public int BetAmount = 5;
 
     private GameObject d1, d2;
     private Dice d1Dice, d2Dice;
@@ -21,7 +21,9 @@ public class GameController : MonoBehaviour
     public ComeOutLabel ComeOutLabel_data { get; private set; }
     public Bankroll BankrollLabel_data { get; private set; }
     public GameObject BetWonLabel_go { get; private set; }
+    public TextMeshPro BetWon_TMP { get; private set; }
     public GameObject BetLostLabel_go { get; private set; }
+    public TextMeshPro BetLost_TMP { get; private set; }
 
     private void Awake()
     {
@@ -33,18 +35,12 @@ public class GameController : MonoBehaviour
         {
             Destroy(this);
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         d1 = Instantiate(GameAssets.i.Dice);
-        d1.SetActive(true);
         d1.name = "Dice 1";
         d1Dice = d1.GetComponent<Dice>();
 
         d2 = Instantiate(GameAssets.i.Dice);
-        d1.SetActive(true);
         d2.transform.position += new Vector3(1, 0, 0);
         d2.name = "Dice 2";
         d2Dice = d2.GetComponent<Dice>();
@@ -58,10 +54,9 @@ public class GameController : MonoBehaviour
         ComeOutLabel_data = Instantiate(GameAssets.i.ComeOutLabel).GetComponent<ComeOutLabel>();
         BankrollLabel_data = Instantiate(GameAssets.i.BankrollLabel).GetComponent<Bankroll>();
         BetWonLabel_go = Instantiate(GameAssets.i.BetWonLabel);
+        BetWon_TMP = BetWonLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>();
         BetLostLabel_go = Instantiate(GameAssets.i.BetLostLabel);
-        BetWonLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>().SetText($"${String.Format("{0:n0}", 0)}");
-        BetLostLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>().SetText($"${String.Format("{0:n0}", 0)}");
-
+        BetLost_TMP = BetLostLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>();
         BetWonLabel_go.SetActive(false);
         BetLostLabel_go.SetActive(false);
     }
@@ -97,13 +92,14 @@ public class GameController : MonoBehaviour
         }
 
         HistoryLabel_data.RolledNumber(rolledTotal, win, lose, isNewPoint);
+        
         CrapsTable_data.DiceRoll(rolledTotal, out amtWon, out amtLost);
+
         if(amtWon > 0)
         {
-            Debug.LogError("won " + amtWon);
             BetWonLabel_go.SetActive(true);
-            BetWonLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>().SetText($"${String.Format("{0:n0}", amtWon)}");
-            BetWonLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>().ForceMeshUpdate();
+            BetWon_TMP.SetText($"${String.Format("{0:n0}", amtWon)}");
+            BetWon_TMP.ForceMeshUpdate();
         }
         else
         {
@@ -111,10 +107,9 @@ public class GameController : MonoBehaviour
         }
         if(amtLost > 0)
         {
-            Debug.LogError("lost "+amtLost);
             BetLostLabel_go.SetActive(true);
-            BetLostLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>().SetText($"${String.Format("{0:n0}", amtLost)}");
-            BetLostLabel_go.transform.GetChild(0).GetComponent<TextMeshPro>().ForceMeshUpdate();
+            BetLost_TMP.SetText($"${String.Format("{0:n0}", amtLost)}");
+            BetLost_TMP.ForceMeshUpdate();
         }
         else
         {

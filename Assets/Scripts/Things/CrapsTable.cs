@@ -10,6 +10,27 @@ public class CrapsTable : MonoBehaviour
     private int amtWon;
     private int amtLost;
 
+    //private void Start()
+    //{
+    //    SetupCE();
+    //}
+
+    #region Setup SRBs
+
+    //private void SetupCE()
+    //{
+    //    GameObject CE = GetChildOfName("SRB_C&E");
+    //    SRB CE_SRB = CE.GetComponent<SRB>();
+    //    CE_SRB.WinningNumbers = new List<int> { 2, 3, 12 };
+    //    CE_SRB.AltWinningNumbers = new List<int> { 11 };
+    //    CE_SRB.PayoutPerUnit = 7;
+    //    CE_SRB.AltPayoutPerUnit = 15;
+    //    CE_SRB.BetSplitPercentage = 1 / 2f;
+    //    CE.GetComponent<Betable>().UnitBet = 1;
+    //}
+
+    #endregion
+
     public GameObject GetChildOfName(string name)
     {
         foreach (Transform child in transform)
@@ -41,18 +62,24 @@ public class CrapsTable : MonoBehaviour
             {
                 ComeOutWinner();
             }
+            // working bets
+            //if (IsPointable(rolledTotal))
+            //{
+            //    AddWinnings(GetChildOfName($"PlaceBox_{rolledTotal}").GetComponent<Betable>().Won());
+            //}
         }
         else 
         {
-            // Point Established
-            if (rolledTotal == Point) {
-                PointMade();
-            } 
-            else if (rolledTotal == 7) {
+            // Point Established 
+            if (rolledTotal == 7) {
                 DevilPopsUp();
             } 
             else
             {
+                if (rolledTotal == Point)
+                {
+                    PointMade();
+                }
                 if (IsPointable(rolledTotal))
                 {
                     AddWinnings(GetChildOfName($"PlaceBox_{rolledTotal}").GetComponent<Betable>().Won());
@@ -90,6 +117,18 @@ public class CrapsTable : MonoBehaviour
         {
             AddLoss(-winnings);
         }
+        foreach (ISingleRollBet srb in GetComponentsInChildren<ISingleRollBet>())
+        {
+            winnings = srb.Rolled(rolledTotal);
+            if (winnings > 0)
+            {
+                AddWinnings(winnings);
+            }
+            else if (winnings < 0)
+            {
+                AddLoss(-winnings);
+            }
+        } 
     }
 
     private void EstablishPoint(int newPoint)
@@ -117,7 +156,7 @@ public class CrapsTable : MonoBehaviour
     {
         var winnings = GetChildOfName("PassLine").GetComponent<Betable>().Won();
         ClearPoint();
-        AddLoss(winnings);
+        AddWinnings(winnings);
     }
 
     private void DevilPopsUp()

@@ -3,22 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Field : MonoBehaviour
+public class Field : ClickableBet
 {
-    public Betable BetScript;
-    public Clickable ClickScript;
-    public List<SpriteRenderer> srList;
 
-    void Awake()
+    void Start()
     {
-        BetScript = GetComponent<Betable>();
-        ClickScript = GetComponent<Clickable>();
-        ClickScript.RegisterBetCallback(BetScript.PlaceBet);
-        ClickScript.RegisterRemoveBetCallback(BetScript.RemoveBet);
         BetScript.PayoutPerUnit = 5;
         BetScript.UnitBet = 5;
-        srList = new List<SpriteRenderer>();
-        BetScript.TokePlacement = transform.GetChild(0).gameObject;
     }
 
     public bool IsValidBet(int bet)

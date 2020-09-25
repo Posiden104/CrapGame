@@ -7,16 +7,20 @@ public class Betable : MonoBehaviour
     public int UnitBet;
     public int PayoutPerUnit;
     public int Bet;
+    public int MinBet = 1;
     public List<GameObject> TokeList;
     public bool IsDont = false;
     public GameObject TokePlacement;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         TokeList = new List<GameObject>();
+        if(transform.childCount > 0) {
+            TokePlacement = transform.GetChild(0).gameObject;
+        }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -46,7 +50,7 @@ public class Betable : MonoBehaviour
             GameController.Instance.BankrollLabel_data.AddMoney(amtToRemove);
         }
         else
-            Debug.LogError($"RemoveBet - Cannot remove {amtToRemove} from the {transform.name}");
+            Debug.LogError($"RemoveBet - Cannot remove {amtToRemove} from the {transform.name}. Bet is only {Bet}");
     }
 
     public int Won(int multiplier = 1)
@@ -55,6 +59,14 @@ public class Betable : MonoBehaviour
         var winnings = units * PayoutPerUnit;
         GameController.Instance.BankrollLabel_data.AddMoney(winnings * multiplier);
         return winnings * multiplier;
+    }
+
+    public int WonWithDifferentPayoutPerUnit(int payoutPerUnit)
+    {
+        var units = Bet / UnitBet;
+        var winnings = units * payoutPerUnit;
+        GameController.Instance.BankrollLabel_data.AddMoney(winnings);
+        return winnings;
     }
 
     public int Lost()
@@ -101,6 +113,19 @@ public class Betable : MonoBehaviour
 
     public bool IsValidBet(int bet)
     {
-        return (bet % UnitBet == 0) && (GameController.Instance.BankrollLabel_data.IsValidBet(bet));
+        if (
+               (bet % UnitBet == 0)
+            && (GameController.Instance.BankrollLabel_data.IsValidBet(bet) == true)
+            && (bet >= MinBet))
+        {
+            return true;
+        }
+
+        if(bet == 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
