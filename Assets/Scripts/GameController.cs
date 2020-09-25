@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     public bool RollOverride = false;
     public int OverrideRollTotal;
     public int BetAmount = 5;
+    public bool BetChanged = false;
+    public int BetAmountSaver;
 
     private GameObject d1, d2;
     private Dice d1Dice, d2Dice;
@@ -100,6 +102,7 @@ public class GameController : MonoBehaviour
             BetWonLabel_go.SetActive(true);
             BetWon_TMP.SetText($"${String.Format("{0:n0}", amtWon)}");
             BetWon_TMP.ForceMeshUpdate();
+            BankrollLabel_data.AddMoney(amtWon);
         }
         else
         {
@@ -128,4 +131,9 @@ public class GameController : MonoBehaviour
         HistoryLabel_data.Clear();
     }
 
+    public void ResetBetSaver()
+    {
+        BetChanged = false;
+        BetAmount = BetAmountSaver;
+    }
 }

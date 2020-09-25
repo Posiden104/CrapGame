@@ -8,9 +8,8 @@ public class Clickable : MonoBehaviour
     RectTransform Rect;
     Action<int> cbBet;
     Action<int> cbRemoveBet;
+    Action cbHover;
     Vector2 MousePos;
-    static bool BetChanged = false;
-    static int BetAmountSaver;
 
     private void Start()
     {
@@ -22,28 +21,19 @@ public class Clickable : MonoBehaviour
     {
         MousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-
         // hover
         if (CheckMouseOver(MousePos))
         {
             // some kind of highlight
 
-            // 6 & 8 bet modifier
-            if (transform.name == "PlaceBox_6" || transform.name == "PlaceBox_8")
-            {
-                if (GameController.Instance.BetAmount % 5 == 0 && BetChanged == false)
-                {
-                    BetAmountSaver = GameController.Instance.BetAmount;
-                    int addToBet = GameController.Instance.BetAmount / 5;
-                    BetChanged = true;
-                    GameController.Instance.BetAmount = BetAmountSaver + addToBet;
-                }
+            if (cbHover != null) {
+                cbHover();
             }
-            else if(BetChanged == true)
-            {
-                BetChanged = false;
-                GameController.Instance.BetAmount = BetAmountSaver;
-            }
+
+        } 
+        else if(GameController.Instance.BetChanged == true)
+        {
+            GameController.Instance.ResetBetSaver();
         }
 
         // left click
@@ -91,7 +81,6 @@ public class Clickable : MonoBehaviour
         }
     }
 
-
     public void BetClicked(int bet)
     {
         cbBet(bet);
@@ -120,6 +109,16 @@ public class Clickable : MonoBehaviour
     public void UnRegisterRemoveBetCallback(Action<int> callback)
     {
         cbRemoveBet -= callback;
+    }
+
+    public void RegisterHoverCallback(Action callback)
+    {
+        cbHover += callback;
+    }
+
+    public void UnRegisterHoverCallback(Action callback)
+    {
+        cbHover -= callback;
     }
 
     public bool CheckMouseOver(Vector2 mousePos)

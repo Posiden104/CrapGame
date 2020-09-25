@@ -5,8 +5,9 @@ using UnityEngine;
 public class ClickableBet : MonoBehaviour
 {
     internal Betable BetScript;
-    Clickable ClickScript;
+    internal Clickable ClickScript;
     List<SpriteRenderer> srList;
+    internal GameController gc;
 
     private void Awake()
     {
@@ -17,5 +18,6 @@ public class ClickableBet : MonoBehaviour
         BetScript.PayoutPerUnit = 5;
         BetScript.UnitBet = 5;
         srList = new List<SpriteRenderer>();
+        gc = GameController.Instance;
     }
 }

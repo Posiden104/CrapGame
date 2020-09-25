@@ -43,6 +43,11 @@ public class Betable : MonoBehaviour
 
     public void RemoveBet(int amtToRemove)
     {
+        if(amtToRemove > Bet)
+        {
+            amtToRemove = Bet;
+        }
+
         if (Bet >= amtToRemove && IsValidBet(Bet - amtToRemove))
         {
             Bet -= amtToRemove;
@@ -50,23 +55,14 @@ public class Betable : MonoBehaviour
             GameController.Instance.BankrollLabel_data.AddMoney(amtToRemove);
         }
         else
-            Debug.LogError($"RemoveBet - Cannot remove {amtToRemove} from the {transform.name}. Bet is only {Bet}");
+            Debug.LogError($"RemoveBet - Cannot remove {amtToRemove} from the {transform.name}. Bet is {Bet}");
     }
 
     public int Won(int multiplier = 1)
     {
         var units = Bet / UnitBet;
         var winnings = units * PayoutPerUnit;
-        GameController.Instance.BankrollLabel_data.AddMoney(winnings * multiplier);
         return winnings * multiplier;
-    }
-
-    public int WonWithDifferentPayoutPerUnit(int payoutPerUnit)
-    {
-        var units = Bet / UnitBet;
-        var winnings = units * payoutPerUnit;
-        GameController.Instance.BankrollLabel_data.AddMoney(winnings);
-        return winnings;
     }
 
     public int Lost()
@@ -113,8 +109,7 @@ public class Betable : MonoBehaviour
 
     public bool IsValidBet(int bet)
     {
-        if (
-               (bet % UnitBet == 0)
+        if ((bet % UnitBet == 0)
             && (GameController.Instance.BankrollLabel_data.IsValidBet(bet) == true)
             && (bet >= MinBet))
         {

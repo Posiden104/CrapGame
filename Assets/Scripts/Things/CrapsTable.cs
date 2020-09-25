@@ -10,27 +10,6 @@ public class CrapsTable : MonoBehaviour
     private int amtWon;
     private int amtLost;
 
-    //private void Start()
-    //{
-    //    SetupCE();
-    //}
-
-    #region Setup SRBs
-
-    //private void SetupCE()
-    //{
-    //    GameObject CE = GetChildOfName("SRB_C&E");
-    //    SRB CE_SRB = CE.GetComponent<SRB>();
-    //    CE_SRB.WinningNumbers = new List<int> { 2, 3, 12 };
-    //    CE_SRB.AltWinningNumbers = new List<int> { 11 };
-    //    CE_SRB.PayoutPerUnit = 7;
-    //    CE_SRB.AltPayoutPerUnit = 15;
-    //    CE_SRB.BetSplitPercentage = 1 / 2f;
-    //    CE.GetComponent<Betable>().UnitBet = 1;
-    //}
-
-    #endregion
-
     public GameObject GetChildOfName(string name)
     {
         foreach (Transform child in transform)
@@ -62,7 +41,9 @@ public class CrapsTable : MonoBehaviour
             {
                 ComeOutWinner();
             }
+
             // working bets
+
             //if (IsPointable(rolledTotal))
             //{
             //    AddWinnings(GetChildOfName($"PlaceBox_{rolledTotal}").GetComponent<Betable>().Won());
@@ -117,6 +98,7 @@ public class CrapsTable : MonoBehaviour
         {
             AddLoss(-winnings);
         }
+
         foreach (ISingleRollBet srb in GetComponentsInChildren<ISingleRollBet>())
         {
             winnings = srb.Rolled(rolledTotal);
